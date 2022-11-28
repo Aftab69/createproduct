@@ -2,7 +2,11 @@ const mongoose = require("mongoose")
 const { Schema } = mongoose;
 
 const dataSchema = new Schema({
-  url:{
+  image:{
+    type:String,
+    required:true
+  },
+  name:{
     type:String,
     required:true
   },
@@ -12,6 +16,14 @@ const dataSchema = new Schema({
   },
   category:{
     type:String,
+    required:true
+  },
+  amount:{
+    type:Number,
+    required:true
+  },
+  quantity:{
+    type:Number,
     required:true
   }
 });

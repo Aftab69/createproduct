@@ -4,9 +4,9 @@ const Model = require("./schemas")
 
 router.post("/generate",async(req,res)=>{
     try{
-       const { url , price, category } = req.body
+       const { image, name, price, category, amount, quantity } = req.body
        console.log(req.body)
-       const user = new Model({url,price,category});
+       const user = new Model({image, name, price, category, amount, quantity});
         await user.save();
         res.status(201).json({ message: "success"});
     }catch(error){
