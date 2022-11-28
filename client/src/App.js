@@ -38,7 +38,7 @@ function App() {
             <input type="text" name="url" onChange={handleinput} placeholder="Enter image url" required />
             <input type="number" name="price" onChange={handleinput} placeholder="Enter price" required />
             <input type="text" name="category" onChange={handleinput} placeholder="Enter category" required />
-            <button onClick={handlesubmit}>Submit</button>
+            <button onClick={handlesubmit}>submit</button>
           </div>
         </form>
       </div>
