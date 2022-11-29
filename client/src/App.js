@@ -41,6 +41,58 @@ function App() {
     }
   }
   console.log(data)
+
+  //for updating products
+  const [ receiveddata, setReceiveddata ] = useState([])
+  const [ searchdata, setSearchdata] = useState({
+    searchname:""
+  })
+  const [ productvisibility, setProductvisibility ] = useState({display:"none"})
+  const handlesearchinput = (e) =>{
+    const txt = e.target.value
+    const nme = e.target.name
+    setSearchdata({...searchdata, [nme]:txt})
+  }
+  console.log(searchdata)
+  const handlesearchsubmit = async(e) =>{
+    e.preventDefault();
+    const { searchname } = searchdata;
+    const response = await fetch("/search",{
+      method:"POST",
+      headers:{
+        "Content-Type":"application/json"
+      },
+      body:JSON.stringify({
+        searchname
+      })
+    })
+    const newdata = await response.json();
+    if(response.status===200){
+      setProductvisibility({display:"flex"})
+      setReceiveddata(newdata) 
+    } else if(response.status===400){
+      setProductvisibility({display:"none"})
+    }
+  }
+  console.log(receiveddata)
+  const handlesearchdelete = async(e) =>{
+    e.preventDefault();
+    const { name } = receiveddata;
+    const res = await fetch("/delete", {
+      method:"POST",
+      headers:{
+          "Content-Type":"application/json"
+      },
+      body: JSON.stringify({
+          name
+      })     
+  })
+  if(res.status===200){
+    window.alert("Product Deleted Successfully")
+    setProductvisibility({display:"none"})
+  }
+  } 
+
   return (
     <>
       <div className="mainpageContainer">
@@ -56,7 +108,18 @@ function App() {
         </form>
       </div>
       <div className="productsviewContainer">
-        
+        <div className="searchBox">
+          <input name="searchname" onChange={handlesearchinput} placeholder="Enter Product Name"/>
+          <button onClick={handlesearchsubmit}>Search</button>
+        </div>
+        <div style={productvisibility} className="productdetailsContainer">
+          <p>image: {receiveddata.image}</p>
+          <p>name: {receiveddata.name}</p>
+          <p>price: {receiveddata.price}</p>
+          <p>category: {receiveddata.category}</p>
+          <p>quantity: {receiveddata.quantity}</p>
+          <button onClick={handlesearchdelete}>Delete</button>
+        </div>
       </div>
     </>
   );

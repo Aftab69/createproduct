@@ -24,4 +24,27 @@ router.get("/apis",async(req,res)=>{
     }
 })
 
+router.post("/search", async(req,res)=>{
+    try{
+        const { searchname } = req.body;
+        const data = await Model.findOne({name:searchname})
+        if(data){
+            res.status(200).send(data)
+        } else {
+            res.status(400).json({"message":"not found"})
+        }
+    }catch(error){
+        console.log(error)
+    }
+})
+router.post("/delete",async(req,res)=>{
+    try{
+        const { name } = req.body;
+        await Model.deleteOne({name:name})
+        res.status(200).json({"message":"deleted successfully"})
+    }catch(error){
+        console.log(error)
+    }
+})
+
 module.exports = router
