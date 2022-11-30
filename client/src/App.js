@@ -101,7 +101,15 @@ function App() {
             <input type="text" name="image" onChange={handleinput} placeholder="Enter Image Url" required />
             <input type="text" name="name" onChange={handleinput} placeholder="Enter Product Name" required />
             <input type="number" name="price" onChange={handleinput} placeholder="Enter Product Price" required />
-            <input type="text" name="category" onChange={handleinput} placeholder="Enter Product Category" required />
+            <div className="radioContainer">
+              <div className="radioDivision"><input type="radio" name="category" value="earrings" onChange={handleinput} /><span>earrings</span></div>
+              <div className="radioDivision"><input type="radio" name="category" value="keyrings" onChange={handleinput} /><span>keyrings</span></div>
+              <div className="radioDivision"><input type="radio" name="category" value="fabric jewellery" onChange={handleinput} /><span>fabric jewellery</span></div>
+              <div className="radioDivision"><input type="radio" name="category" value="necklaces" onChange={handleinput} /><span>necklaces</span></div>
+              <div className="radioDivision"><input type="radio" name="category" value="accessories" onChange={handleinput} /><span>accessories</span></div>
+              <div className="radioDivision"><input type="radio" name="category" value="jewellery set" onChange={handleinput} /><span>jewellery set</span></div>
+              <div className="radioDivision"><input type="radio" name="category" value="phonecharms" onChange={handleinput} /><span>phonecharms</span></div>
+            </div>
             <input type="number" name="quantity" onChange={handleinput} placeholder="Enter Product Quantity" required />
             <button onClick={handlesubmit}>Submit</button>
           </div>
