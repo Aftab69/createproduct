@@ -99,7 +99,7 @@ function App() {
         <form>
           <div className="formContainer">
             <input type="text" name="image" onChange={handleinput} placeholder="Enter Image Url" required />
-            <input type="text" name="name" onChange={handleinput} placeholder="Enter Product Name" required />
+            <input type="text" name="name" onChange={handleinput} placeholder="Enter Product Name (In Capitals)" required />
             <input type="number" name="price" onChange={handleinput} placeholder="Enter Product Price" required />
             <div className="radioContainer">
               <div className="radioDivision"><input type="radio" name="category" value="earrings" onChange={handleinput} /><span>earrings</span></div>
